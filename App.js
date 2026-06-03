@@ -201,7 +201,7 @@ export default function App() {
           onPress={handleSendMessage}
           disabled={loading || !inputText.trim()}
         >
-          <Text style={styles.sendButtonText}>{loading ? "..." : "📤"}</Text>
+          <Text style={styles.sendButtonText}>{loading ? "..." : "→"}</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
@@ -373,5 +373,6 @@ const styles = StyleSheet.create({
   },
   sendButtonText: {
     fontSize: 20,
+    color: "#fff",
   },
 });
