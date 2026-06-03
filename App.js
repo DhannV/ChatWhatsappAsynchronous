@@ -10,6 +10,7 @@ import {
   Platform,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { LinearGradient } from "expo-linear-gradient";
 
 // Simulasi async API call untuk mengirim pesan
 const sendMessageToServer = async (message) => {
@@ -162,10 +163,17 @@ export default function App() {
       <StatusBar style="light" />
 
       {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>ChatWhatsApp</Text>
-        <Text style={styles.headerSubtitle}>Online</Text>
-      </View>
+      <LinearGradient
+        colors={["#0d47a1", "#1565c0"]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={styles.headerGradient}
+      >
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>ChatWhatsApp</Text>
+          <Text style={styles.headerSubtitle}>● Online</Text>
+        </View>
+      </LinearGradient>
 
       {/* Messages List */}
       <FlatList
@@ -228,100 +236,142 @@ const getTimeString = (timestamp) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f0f0f0",
+    backgroundColor: "#f5f7fa",
+  },
+  headerGradient: {
+    paddingTop: Platform.OS === "ios" ? 50 : 40,
+    paddingBottom: 20,
+    paddingHorizontal: 16,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 8,
   },
   header: {
-    backgroundColor: "#25d366",
-    paddingTop: 40,
-    paddingBottom: 15,
-    paddingHorizontal: 15,
+    flexDirection: "column",
   },
   headerTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
+    fontSize: 26,
+    fontWeight: "800",
     color: "#fff",
+    letterSpacing: 0.5,
   },
   headerSubtitle: {
-    fontSize: 12,
-    color: "#e0e0e0",
-    marginTop: 5,
+    fontSize: 13,
+    color: "#e3f2fd",
+    marginTop: 6,
+    fontWeight: "500",
   },
   messagesList: {
-    paddingVertical: 10,
-    paddingHorizontal: 10,
+    paddingVertical: 12,
+    paddingHorizontal: 12,
+    flex: 1,
   },
   messageBubble: {
-    marginVertical: 5,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    borderRadius: 15,
+    marginVertical: 6,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    borderRadius: 18,
     maxWidth: "80%",
   },
   userBubble: {
     alignSelf: "flex-end",
-    backgroundColor: "#dcf8c6",
-    marginRight: 10,
+    backgroundColor: "#0d47a1",
+    marginRight: 12,
+    shadowColor: "#0d47a1",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 6,
+    elevation: 4,
   },
   friendBubble: {
     alignSelf: "flex-start",
     backgroundColor: "#fff",
-    marginLeft: 10,
+    marginLeft: 12,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 3,
+    borderLeftWidth: 3,
+    borderLeftColor: "#1565c0",
   },
   messageText: {
-    fontSize: 14,
-    color: "#000",
+    fontSize: 15,
+    color: "#1a1a1a",
+    lineHeight: 20,
   },
   userText: {
-    color: "#000",
+    color: "#fff",
+    fontWeight: "500",
   },
   statusContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 4,
+    marginTop: 6,
     justifyContent: "flex-end",
   },
   statusText: {
-    fontSize: 10,
-    color: "#666",
-    marginRight: 4,
+    fontSize: 12,
+    color: "#555",
+    marginRight: 5,
+    fontWeight: "600",
   },
   userStatusText: {
-    color: "#25d366",
+    color: "#81d4fa",
   },
   timeText: {
-    fontSize: 10,
+    fontSize: 11,
     color: "#999",
+    fontWeight: "400",
   },
   inputContainer: {
     flexDirection: "row",
-    padding: 10,
+    padding: 12,
     backgroundColor: "#fff",
     alignItems: "flex-end",
     borderTopWidth: 1,
-    borderTopColor: "#e0e0e0",
+    borderTopColor: "#e8ecf1",
+    paddingBottom: Platform.OS === "ios" ? 20 : 12,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: -2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
+    elevation: 5,
   },
   input: {
     flex: 1,
-    borderRadius: 20,
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    backgroundColor: "#f0f0f0",
+    borderRadius: 24,
+    paddingHorizontal: 16,
+    paddingVertical: 11,
+    backgroundColor: "#f0f3f7",
     marginRight: 10,
     maxHeight: 100,
-    fontSize: 14,
+    fontSize: 15,
+    color: "#1a1a1a",
+    borderWidth: 1.5,
+    borderColor: "transparent",
   },
   sendButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: "#25d366",
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: "#0d47a1",
     justifyContent: "center",
     alignItems: "center",
+    shadowColor: "#0d47a1",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.35,
+    shadowRadius: 8,
+    elevation: 5,
   },
   sendButtonDisabled: {
-    backgroundColor: "#ccc",
+    backgroundColor: "#bdbdbd",
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
   },
   sendButtonText: {
-    fontSize: 18,
+    fontSize: 20,
   },
 });
